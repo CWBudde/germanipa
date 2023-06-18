@@ -50,7 +50,7 @@ class Text(object):
         """
         for line in self.each_line:
             if not (line.adjustedline.isspace() or (line.adjustedline == '')):
-                print((line.adjustedline + "\t" + line.ipa).encode('utf-8'))
+                print((line.adjustedline + "\t" + line.ipa))
             else:
                 print((line.adjustedline))
 
