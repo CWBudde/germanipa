@@ -122,7 +122,7 @@ class Line(object):
                 ipalen = len(each_word[w].ipa) + 1  # length of ipa + one space
 
                 # does ipa have leading accents or glottals?
-                accents = ["ˈʔ".decode('utf8'), "ˈ".decode('utf8')]
+                accents = ["ˈʔ", "ˈ"]
                 frontlen = len(list(filter(each_word[w].ipa.startswith,accents+['']))[0])
                 adjustedline += ' ' * frontlen
 
