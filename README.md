@@ -33,6 +33,12 @@ Process finished with exit code 0
 
 ```
 
+or from command line:
+
+```
+python germanipa.py "Hallo Welt"
+```
+
 ## Prerequisities
 * Python 3
 
