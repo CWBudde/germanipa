@@ -219,7 +219,7 @@ class Root(Part):
         # TODO double s case: need to handle here or at vowel rule
 
         # split string each time word switches between vowel and consonant
-        each_string = re.split("([aeiouyäëïöü\']+)".decode('utf8'), self.string)
+        each_string = re.split("([aeiouyäëïöü\']+)", self.string)
         for i in range(len(each_string)):
 
             # consonant strings will always be at even indexes
@@ -237,10 +237,10 @@ class Root(Part):
             else:
 
                 # single vowel = Vow
-                if (len(each_string[i]) == 1):
+                if len(each_string[i]) == 1:
                     each_frag.append(Vow(each_string[i]))
 
-                # multiple vowels m= Diph
+                # multiple vowels = Diph
                 else:
                     each_frag.append(Diph(each_string[i]))
 
