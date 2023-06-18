@@ -227,13 +227,13 @@ ipa_easy_clusters = {
     "dn" : "dn"
 }
 
-prefixes = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_prefixes.items()}
-insep_prefixes = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_insep_prefixes.items()}
-suffixes = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_suffixes.items()}
-stressed_suffixes = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_stressed_suffixes.items()}
-endings = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_endings.items()}
-closed_vowels = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_closed_vowels.items()}
-open_vowels = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_open_vowels.items()}
-normal_consonants = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_normal_consonants.items()}
-diphthongs = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_diphthongs.items()}
-easy_clusters = {k.decode('utf8'): v.decode('utf8') for k, v in ipa_easy_clusters.items()}
+prefixes = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_prefixes.items())}
+insep_prefixes = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_insep_prefixes.items())}
+suffixes = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_suffixes.items())}
+stressed_suffixes = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_stressed_suffixes.items())}
+endings = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_endings.items())}
+closed_vowels = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_closed_vowels.items())}
+open_vowels = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_open_vowels.items())}
+normal_consonants = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_normal_consonants.items())}
+diphthongs = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_diphthongs.items())}
+easy_clusters = {k.decode('utf8'): v.decode('utf8') for k, v in list(ipa_easy_clusters.items())}

@@ -38,11 +38,11 @@ class Text(object):
         """
         for line in self.each_line:
             if not (line.adjustedline.isspace() or (line.adjustedline == '')):
-                print (line.adjustedline)
-                print (line.ipa)
+                print((line.adjustedline))
+                print((line.ipa))
                 print (' ')
             else:
-                print (line.adjustedline)
+                print((line.adjustedline))
 
     def print_dict_ipa(self):
         """
@@ -50,9 +50,9 @@ class Text(object):
         """
         for line in self.each_line:
             if not (line.adjustedline.isspace() or (line.adjustedline == '')):
-                print (line.adjustedline + "\t" + line.ipa).encode('utf-8')
+                print((line.adjustedline + "\t" + line.ipa).encode('utf-8'))
             else:
-                print (line.adjustedline)
+                print((line.adjustedline))
 
 
 class Line(object):
@@ -123,7 +123,7 @@ class Line(object):
 
                 # does ipa have leading accents or glottals?
                 accents = ["ˈʔ".decode('utf8'), "ˈ".decode('utf8')]
-                frontlen = len(filter(each_word[w].ipa.startswith,accents+[''])[0])
+                frontlen = len(list(filter(each_word[w].ipa.startswith,accents+['']))[0])
                 adjustedline += ' ' * frontlen
 
                 # calculate difference in length
@@ -183,7 +183,7 @@ class Word(object):
 
             # if part is less than 5 letters, no need to look for prefs and suffs
             if len(part) < 5:
-                if part in prefixes.keys():  # simple word could be a separable prefix
+                if part in list(prefixes.keys()):  # simple word could be a separable prefix
                     each_part.append(Pref([part]))
                 else:
                     each_part.append(Root(part))
@@ -191,7 +191,7 @@ class Word(object):
             # else if part is 5 or more letters
             else:
                 # check if separable prefix
-                if part in prefixes.keys():
+                if part in list(prefixes.keys()):
 
                     # hold onto prefix until we know if next part is prefix or starts with insep. prefix
                     prefix_buff.append(part)
@@ -204,11 +204,11 @@ class Word(object):
                     # TODO check for issues : herz?
                     # check for prefixes
                     while True:
-                        pref = root[:len(filter(root.startswith,prefixes.keys()+[''])[0])]
+                        pref = root[:len(list(filter(root.startswith,list(prefixes.keys())+['']))[0])]
                         if pref == '':
                             break
                         prefix_buff.append(pref)
-                        root = root[len(filter(root.startswith,prefixes.keys()+[''])[0]):]
+                        root = root[len(list(filter(root.startswith,list(prefixes.keys())+['']))[0]):]
 
                     # add any buffered prefixes to each_frag and empty buffer
                     if prefix_buff != []:
@@ -219,13 +219,13 @@ class Word(object):
                     while True:
 
                         # look for stressed suffs
-                        breakpoint = len(filter(root.endswith,stressed_suffixes.keys()+[''])[0])
+                        breakpoint = len(list(filter(root.endswith,list(stressed_suffixes.keys())+['']))[0])
 
                         # if not stressed
                         if (breakpoint == 0):
 
                             # look for unstressed stuffs
-                            breakpoint = len(filter(root.endswith,suffixes.keys()+[''])[0])
+                            breakpoint = len(list(filter(root.endswith,list(suffixes.keys())+['']))[0])
 
                             # no suffs found, stop looking
                             if (breakpoint == 0):

@@ -488,7 +488,7 @@ class Clust(Frag):
         Frag.ipa_rule(self, finalstress, ipa, each_part, wordlength, wordindex, rootipa, each_frag, rootlength, rootindex, alreadystress, nextletter)
 
         # if easy cluster
-        if self.string in easy_clusters.keys():
+        if self.string in list(easy_clusters.keys()):
             self.newipa += easy_clusters[self.string]
 
         # if can be treated as single consonant: "kk", "bb", "dt", "dd", "gg"
@@ -539,8 +539,8 @@ class Clust(Frag):
         else:
 
             # look for common clust at beginning and end
-            front = len(filter(self.string.startswith,all_clust+[''])[0])
-            back = len(filter(self.string.endswith,all_clust+[''])[0])
+            front = len(list(filter(self.string.startswith,all_clust+['']))[0])
+            back = len(list(filter(self.string.endswith,all_clust+['']))[0])
 
             # if clust found at beginning
             if front > 0:
