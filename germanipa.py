@@ -5,7 +5,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         text_input = sys.argv[1]
         b = Text(text_input)
-        b.print_ipa()
+        b.print_ipa_only()
         sys.exit(1)
 
     while True:

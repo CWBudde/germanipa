@@ -34,7 +34,7 @@ class Text(object):
 
     def print_ipa(self):
         """
-        Prints each Line of text with ipa underneath.
+        Prints each line of text with ipa underneath.
         """
         for line in self.each_line:
             if not (line.adjustedline.isspace() or (line.adjustedline == '')):
@@ -43,6 +43,13 @@ class Text(object):
                 print (' ')
             else:
                 print((line.adjustedline))
+
+    def print_ipa_only(self):
+        """
+        Prints ipa of each line of text.
+        """
+        for line in self.each_line:
+            print((line.ipa))
 
     def print_dict_ipa(self):
         """
