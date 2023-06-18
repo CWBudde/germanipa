@@ -82,32 +82,32 @@ class Pref(Part):
                 # hin
                 if self.each_pref[i-1] == 'hin':
                     temp = prefixes[self.each_pref[i]]
-                    if temp[1] == "ʔ".decode('utf8'):
-                        newipa = newipa[:-1] + "ˈn".decode('utf8') + temp[2:]
+                    if temp[1] == "ʔ":
+                        newipa = newipa[:-1] + "ˈn" + temp[2:]
                     else:
                         newipa += temp
 
                 # her
                 elif (self.each_pref[i-1] == 'her'):
                     temp = prefixes[self.each_pref[i]]
-                    if temp[1] == "ʔ".decode('utf8'):
-                        newipa = newipa[:-4] + "ɛˈɾ".decode('utf8') + temp[2:]
+                    if temp[1] == "ʔ":
+                        newipa = newipa[:-4] + "ɛˈɾ" + temp[2:]
                     else:
                         newipa += temp
 
                 # dar vor
                 elif (self.each_pref[i-1] in ['dar', 'vor']):
                     temp = prefixes[self.each_pref[i]]
-                    if temp[1] == "ʔ".decode('utf8'):
-                        newipa = newipa[:-1] + "ˈɾ".decode('utf8') + temp[2:]
+                    if temp[1] == "ʔ":
+                        newipa = newipa[:-1] + "ˈɾ" + temp[2:]
                     else:
                         newipa += temp
                 else:
                     newipa += prefixes[self.each_pref[i]]
 
         # change primary stress to secondary if wordindex != 0
-        if (wordindex != 0) and (newipa[0] == "ˈ".decode('utf8')):
-            newipa = "ˌ".decode('utf8') + newipa[1:]
+        if (wordindex != 0) and (newipa[0] == "ˈ"):
+            newipa = "ˌ" + newipa[1:]
 
         # show Part type if debugging is on
         if bug == True:
@@ -321,7 +321,7 @@ class Frag(object):
 
             # if Frag beginning of Word, give primary stress
             if (wordindex == 0):
-                newipa += "ˈ".decode('utf8')
+                newipa += "ˈ"
 
             # else not beginning of word
             else:
@@ -330,17 +330,17 @@ class Frag(object):
                 if (wordindex == 1) and (type(each_part[wordindex - 1]) == Pref):
 
                     # if Prefix has primary stress, give Frag secondary stress
-                    if 'ˈ'.decode('utf8') in ipa[0]:
+                    if 'ˈ' in ipa[0]:
 
-                        newipa += "ˌ".decode('utf8')
+                        newipa += "ˌ"
 
                     # or if Prefix is unaccented, give Frag primary stress
                     else:
-                        newipa += "ˈ".decode('utf8')
+                        newipa += "ˈ"
 
                 # if doesn't follow first prefix (or any prefix), give secondary stress
                 else:
-                    newipa += "ˌ".decode('utf8')
+                    newipa += "ˌ"
 
         # else if not beginning of root, set prevfrag
         elif (rootindex > 0):
@@ -400,10 +400,10 @@ class Cons(Frag):
 
         # if next part is stressed suffix, add stress before the consonant
         if finalstress and (rootindex == (rootlength-1)) and (self.nextpart == Suff):
-            self.newipa += "ˈ".decode('utf8')
+            self.newipa += "ˈ"
 
         # if only one ipa possibility
-        if self.string in 'fjklmnpwxzß'.decode('utf8'):
+        if self.string in 'fjklmnpwxzß':
             self.newipa += normal_consonants[self.string]
 
         # if b, d, g, s (voiced/unvoiced)
@@ -456,7 +456,7 @@ class Cons(Frag):
         # TODO 'er'
         # TODO vanish them if at end of short word
         elif self.string == 'r':
-            self.newipa += "ɾ".decode('utf8')
+            self.newipa += "ɾ"
 
         # some other consonant I forgot
         else:
@@ -505,11 +505,11 @@ class Clust(Frag):
                 if (each_frag[rootindex - 1].string == 'a') or (each_frag[rootindex - 1].string == 'o') or (each_frag[rootindex - 1].string == 'u'):
                     self.newipa += "x"
                 else:
-                    self.newipa += "ç".decode('utf8')
+                    self.newipa += "ç"
             elif (self.prevfrag == Diph) and (each_frag[rootindex - 1].string == 'au'):
                 self.newipa += "x"
             else:
-                self.newipa += "ç".decode('utf8')
+                self.newipa += "ç"
 
         #"chs"
         # TODO verbs and genitive endings where it is not "ks"!!
@@ -519,21 +519,21 @@ class Clust(Frag):
         # "sp"
         elif self.string == "sp":
             if rootindex == 0:
-                self.newipa += "ʃp".decode('utf8')
+                self.newipa += "ʃp"
             else:
                 self.newipa += "sp"
 
         # "st"
         elif self.string == "st":
             if rootindex == 0:
-                self.newipa += "ʃt".decode('utf8')
+                self.newipa += "ʃt"
             else:
                 self.newipa += "st"
 
         # "sch"
         # TODO check suffix "chen" -- might have some false positives
         elif self.string == "sch":
-            self.newipa += "ʃ".decode('utf8')
+            self.newipa += "ʃ"
 
         # else more complex, needs to be broken down more
         else:
@@ -608,13 +608,13 @@ class Vow(Frag):
 
         # if at beginning of root, add glottal
         if rootindex == 0:
-            self.newipa += "ʔ".decode('utf8')
+            self.newipa += "ʔ"
 
         # Vow precedes single Cons, ipa is closed vowel
         if self.nextfrag == Cons:
             self.newipa += closed_vowels[self.string]
             if (not finalstress) and ((rootindex == 0) or (rootindex == 1)):
-                self.newipa += "ː".decode('utf8')
+                self.newipa += "ː"
 
         # Vow precedes Clust
         elif self.nextfrag == Clust:
@@ -677,7 +677,7 @@ class Diph(Frag):
             # check for "tion"
             if self.string == "io":
                 if (each_frag[rootindex-1].string[-1] == 't') and (self.nextletter == 'n'):
-                    self.newipa += "ĭo".decode('utf8')
+                    self.newipa += "ĭo"
                 else:
                     self.newipa = "WEIRD DIPH"
             else:
