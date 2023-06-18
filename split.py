@@ -1,6 +1,5 @@
 with open("wordlist.txt") as f:
-    language = [line.rstrip().decode('utf8') for line in f]
-
+    language = [line.rstrip() for line in f]
 
 def split_word(word):
     for i in range(len(word)):
